@@ -3,7 +3,7 @@
 ## Settings Bluestacks 4
 Resolution 1600x900 and 240 DPI
 
-Enebled Anddroid Debug Bridge(ADB)
+Enabled Android Debug Bridge(ADB)
 
 Allow BluesStacks to connect with Discrod
 
