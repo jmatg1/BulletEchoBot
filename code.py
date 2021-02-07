@@ -122,7 +122,9 @@ class Bot:
 
             if self.isFightScreen():
                 self.log('Fight Screen')
+                self.click(1280, 450) # 1 skill
                 self.keyW(10000)
+                self.click(1480, 335) # 2 skill
                 continue
 
             if self.isCollectScreen():
@@ -167,6 +169,9 @@ class Bot:
             self.click(1034, 782)
         if self.pixelSearch(446, 166, (251, 164, 20)): # Повышение рейтинга
             self.clickBack()
+        if self.pixelSearch(530, 290, (17, 115, 202)): # Autokick
+            self.log('Autockic detected')
+            self.keyBack()
         if self.pixelSearch(446, 166, (82, 58, 215)): # Братья по оружию
             self.click(1238, 171)
             time.sleep(1)
@@ -308,6 +313,12 @@ class Bot:
 
     def keyW(self, ms):
         self.shell(f'input swipe 250 700 250 600 {ms}')
+
+    def keyQ(self):
+        self.shell(f'input keyevent 45')
+
+    def keyE(self):
+        self.shell(f'input keyevent 33')
 
     def keyBack(self):
         self.shell(f'input keyevent 4')
