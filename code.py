@@ -249,6 +249,8 @@ class Bot:
             count = count + 1
         if self.pixelSearch(x1, y1, (46, 38, 91)):
             count = count + 1
+        if self.pixelSearch(x1, y1, (56, 37, 53)):
+            count = count + 1
         return count > 0
 
     def isTableRezultScreen(self):
