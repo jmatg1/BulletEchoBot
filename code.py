@@ -172,6 +172,9 @@ class Bot:
         if self.pixelSearch(530, 290, (17, 115, 202)): # Autokick
             self.log('Autockic detected')
             self.keyBack()
+        if self.pixelSearch(530, 290, (17, 114, 201)): # Autokick
+            self.log('Autockic detected')
+            self.keyBack()
         if self.pixelSearch(446, 166, (82, 58, 215)): # Братья по оружию
             self.click(1238, 171)
             time.sleep(1)
