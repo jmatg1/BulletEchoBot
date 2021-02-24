@@ -3,19 +3,14 @@ import time
 from datetime import datetime
 from PIL import Image
 from tkinter import Tk, Button, Text, END
-
 from tkinter import ttk
 
 import threading
-import multiprocessing
-from subprocess import check_output, Popen, PIPE
+from subprocess import check_output
 
 tkWindow = Tk()
 tkWindow.geometry('400x250')
 tkWindow.title('Bullet ECho Bot v 1.1 By Jmatg1')
-
-# im = Image.open("bride.jpg")
-# im.rotate(45).show()
 
 class Bot:
     work = 1
@@ -346,9 +341,13 @@ class Bot:
         os.system(f'hd-adb -s {self.device} shell {cmd}')
 
     def log(self, value):
-        timeVal = datetime.now().strftime("%H:%M:%S")
-        text.insert(END, "%s: %s \r\n" % (timeVal, value))
+        timeVal = datetime.now().strftime("%D %H:%M:%S")
+        logString = "%s %s" % (timeVal, value)
+        text.insert(END, logString + " \r\n")
         text.see("end")
+        f = open("log.txt", "a")
+        f.write(logString + " \r")
+        f.close()
 
     def selectedDevice(self, event):
         self.device = inputDevice.get()
