@@ -98,6 +98,9 @@ class Bot:
 
             if self.isMainScreen():
                 self.log('Main Screen')
+                
+                self.missionBot()
+                
                 if self.isEventActive():
                     self.log('isEventActive')
                     self.openEvent()
@@ -126,7 +129,6 @@ class Bot:
                 self.log('Collect Screen')
                 self.click(611, 669) # Skip Series
                 self.click(803, 769) # Collect
-                self.click(803, 769) # Next
                 self.getScreen()
                 continue
 
@@ -170,6 +172,9 @@ class Bot:
         if self.pixelSearch(530, 290, (17, 114, 201)): # Autokick
             self.log('Autockic detected')
             self.keyBack()
+        if self.pixelSearch(873, 791, (155, 23, 224)): # Contract
+            self.log('Contracts detected')
+            self.keyBack()
         if self.pixelSearch(446, 166, (82, 58, 215)): # Братья по оружию
             self.click(1238, 171)
             time.sleep(1)
@@ -203,6 +208,14 @@ class Bot:
         y1 = 514
         self.getPixelColor(x1, y1)
         if self.pixelSearch(x1, y1, (255, 210, 31)):
+            return True
+        else:
+            return False
+
+    def isReadyBox(self):
+        x1 = 251
+        y1 = 831
+        if self.pixelSearch(x1, y1, (254, 172, 39)):
             return True
         else:
             return False
