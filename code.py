@@ -98,16 +98,16 @@ class Bot:
 
             if self.isMainScreen():
                 self.log('Main Screen')
-                
-                self.missionBot()
-                
+
+                self.collectBoxBot()
+
                 if self.isEventActive():
                     self.log('isEventActive')
                     self.openEvent()
                     self.eventBot()
                 elif self.isMissionsActive():
                     self.click(120, 555)
-                    self.missionBot()
+                    self.collectContract()
                     self.clickBack()
                 else:
                     self.clickPlay()
@@ -162,6 +162,8 @@ class Bot:
 
     def skipAds(self):
         self.getPixelColor(446, 166)
+        if self.pixelSearch(566, 560, (238, 72, 35)): # Повышение level
+            self.click(566, 560)
         if self.pixelSearch(446, 166, (47, 77, 129)): # Повышение level
             self.click(1034, 782)
         if self.pixelSearch(446, 166, (251, 164, 20)): # Повышение рейтинга
@@ -206,7 +208,7 @@ class Bot:
     def isMissionsActive(self):
         x1 = 196
         y1 = 514
-        self.getPixelColor(x1, y1)
+        # self.log(self.getPixelColor(x1, y1))
         if self.pixelSearch(x1, y1, (255, 210, 31)):
             return True
         else:
@@ -229,17 +231,60 @@ class Bot:
             self.click(1060, 275)
             self.click(67, 50)
 
-    def missionBot(self):
+    def collectContract(self):
+        self.log('Start collectContract Bot')
+
+        self.log('3h contract')
+        self.click(280, 180)
+        self.missionBot()
+
+        self.log('8h contract')
+        self.click(280, 280)
+        self.missionBot()
+
+        self.log('21h contract')
+        self.click(280, 380)
+        self.missionBot()
+
+        self.log('2d contract')
+        self.click(280, 480)
+        self.missionBot()
+
+        self.log('1w contract')
+        self.click(280, 580)
+        self.missionBot()
+
+        self.log('END collectContract Bot')
+         
+    def collectBoxBot(self):
+        self.log('Start collectBoxBot')
         hasMission = True
         while hasMission:
             self.getScreen()
-            cord = self.getXYByColor((254, 171, 39))
+            cord = self.getXYByColor((254, 171, 39), True, 0, (212, 708), (630, 900))
             if cord:
+                self.log('Collect Box')
                 self.click(cord[0], cord[1])
                 time.sleep(1)
                 self.keyBack()
             else:
                 hasMission = False
+        self.log('END collectBoxBot')
+
+    def missionBot(self):
+        self.log('Start Mission Bot')
+        hasMission = True
+        while hasMission:
+            self.getScreen()
+            cord = self.getXYByColor((254, 171, 39), True, 0, (420, 780),(1200, 800))
+            if cord:
+                self.log('Collect Box')
+                self.click(cord[0], cord[1])
+                time.sleep(1)
+                self.keyBack()
+            else:
+                hasMission = False
+        self.log('END Mission Bot')
 
     def isTicketsOver(self):
         self.getScreen()
