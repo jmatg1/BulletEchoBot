@@ -1,5 +1,6 @@
 # BulletEchoBot
 
+Set Russian Language in the game
 ## Settings Bluestacks 4
 Resolution 1600x900 and 240 DPI
 
