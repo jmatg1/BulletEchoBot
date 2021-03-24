@@ -276,7 +276,7 @@ class Bot:
         hasMission = True
         while hasMission:
             self.getScreen()
-            cord = self.getXYByColor((254, 171, 39), True, 0, (420, 780),(1200, 800))
+            cord = self.getXYByColor((254, 171, 39), True, 0, (413, 407),(1200, 800))
             if cord:
                 self.log('Collect Box')
                 self.click(cord[0], cord[1])
