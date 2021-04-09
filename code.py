@@ -162,6 +162,10 @@ class Bot:
 
     def skipAds(self):
         self.getPixelColor(446, 166)
+        if self.pixelSearch(926, 770, (110, 204, 22)): # Skip league
+            self.click(926, 770)
+            time.sleep(3)
+            self.keyBack()
         if self.pixelSearch(566, 560, (238, 72, 35)): # Повышение level
             self.click(566, 560)
         if self.pixelSearch(446, 166, (47, 77, 129)): # Повышение level
@@ -389,7 +393,6 @@ class Bot:
 
     def stop(self):
         self.work = 0
-        self.t1.join()
 
     def closeWindow(self):
         self.work = 0
