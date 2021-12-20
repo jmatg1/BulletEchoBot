@@ -11,7 +11,7 @@ from subprocess import check_output
 
 tkWindow = Tk()
 tkWindow.geometry('400x250')
-tkWindow.title('Bullet ECho Bot v 2.0 By Jmatg1')
+tkWindow.title('Bullet ECho Bot v 4.3.1 By Jmatg1')
 
 class Bot:
     work = 1
@@ -96,75 +96,56 @@ class Bot:
             # self.log('Scan')
 
             self.skipAds()
-            if self.isMainScreen(): # Главный экран
+
+            if self.isMainScreen():
                 self.log('Main Screen')
-                # if self.isEventActive():
-                #     self.log('isEventActive')
-                # else:
-                self.clickPlay()
+                self.collectBoxBot()
+                if self.isEventActive():
+                    self.log('isEventActive')
+                    self.openEvent()
+                    self.eventBot()
+                elif self.isMissionsActive():
+                    self.click(120, 555)
+                    self.collectContract()
+                    self.clickBack()
+                else:
+                    self.clickPlay()
                 continue
+
+            if self.isEventScreen():
+                self.log('Event Screen')
+                self.eventBot()
+                continue
+
             if self.isFightScreen():
                 self.log('Fight Screen')
-                self.click(1280, 450)  # 1 skill
+                self.click(1280, 450) # 1 skill
                 self.keyW(10000)
-                self.click(1480, 335)  # 2 skill
+                self.click(1480, 335) # 2 skill
                 continue
 
             if self.isCollectScreen():
-                self.log('is Collect Screen')
-                self.click(680, 780)  # 1 skill
+                self.log('Collect Screen')
+                self.click(611, 669) # Skip Series
+                self.click(803, 769) # Collect
+                self.getScreen()
                 continue
-            # if self.isMainScreen():
-            #     self.log('Main Screen')
-            #
-            #     self.collectBoxBot()
-            #
-            #     if self.isEventActive():
-            #         self.log('isEventActive')
-            #         self.openEvent()
-            #         self.eventBot()
-            #     elif self.isMissionsActive():
-            #         self.click(120, 555)
-            #         self.collectContract()
-            #         self.clickBack()
-            #     else:
-            #         self.clickPlay()
-            #     continue
 
-            # if self.isEventScreen():
-            #     self.log('Event Screen')
-            #     self.eventBot()
-            #     continue
-            #
-            # if self.isFightScreen():
-            #     self.log('Fight Screen')
-            #     self.click(1280, 450) # 1 skill
-            #     self.keyW(10000)
-            #     self.click(1480, 335) # 2 skill
-            #     continue
-            #
-            # if self.isCollectScreen():
-            #     self.log('Collect Screen')
-            #     self.click(611, 669) # Skip Series
-            #     self.click(803, 769) # Collect
-            #     self.getScreen()
-            #     continue
-            #
-            # if self.isTableRezultScreen():
-            #     self.log('Table Screen')
-            #     self.click(803, 769) # Next
-            #     self.getScreen()
-            #     continue
-            #
-            # if self.isFriendsScreen():
-            #     self.log('Friends Screen') # enothe
-            #     continue
-            #
-            # if self.isMissionsScreen():
-            #     self.log('Missions Screen')
-            #     self.missionBot()
-            #     self.clickBack()
-            #     continue
+            if self.isTableRezultScreen():
+                self.log('Table Screen')
+                self.click(803, 769) # Next
+                self.getScreen()
+                continue
+
+            if self.isFriendsScreen():
+                self.log('Friends Screen') # enothe
+                continue
+
+            if self.isMissionsScreen():
+                self.log('Missions Screen')
+                self.missionBot()
+                self.clickBack()
+                continue
 
             if self.isHeroesScreen():
                 self.log('Heroes Screen')
@@ -209,11 +190,11 @@ class Bot:
                 self.click(redBtn[0], redBtn[1])
                 time.sleep(1)
 
-        closeIcon = self.getXYByColor((4, 66, 148), True, 3, (137, 160), (1594, 251))
+        closeIcon = self.getXYByColor((4, 66, 148), True, 0, (137, 160), (1594, 251))
         if closeIcon:
             self.log('closeIcon')
             self.click(closeIcon[0], closeIcon[1])
-            redBtn = self.getXYByColor((236, 69, 32), True, 3, (573, 498), (1222, 664))
+            redBtn = self.getXYByColor((236, 69, 32), True, 0, (573, 498), (1222, 664))
             if redBtn:
                 self.click(redBtn[0], redBtn[1])
                 time.sleep(1)
