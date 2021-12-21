@@ -185,6 +185,10 @@ class Bot:
             self.keyBack()
         if self.pixelSearch(446, 166, (82, 58, 215)): # Братья по оружию
             self.log('Братья по оружию')
+            closeIcon = self.getXYByColor((62, 29, 171), True, 0, (854, 123), (1583, 251))
+            if closeIcon:
+                self.log('closeIcon')
+                self.click(closeIcon[0], closeIcon[1])
             redBtn = self.getXYByColor((236, 69, 32), True, 3, (573, 498), (1222, 664))
             if redBtn:
                 self.click(redBtn[0], redBtn[1])
@@ -200,7 +204,8 @@ class Bot:
                 time.sleep(1)
 
     def isMainScreen(self):
-        if self.pixelSearch(1345, 35, (25, 52, 135)): # 1340, 30, 1350, 40,
+        btnPlay = self.getXYByColor((25, 52, 135), True, 0, (1345, 35), (1583, 251))
+        if btnPlay:
             return True
         else:
             return False
