@@ -104,10 +104,10 @@ class Bot:
                     self.log('isEventActive')
                     self.openEvent()
                     self.eventBot()
-                elif self.isMissionsActive():
-                    self.click(120, 555)
-                    self.collectContract()
-                    self.clickBack()
+                # elif self.isMissionsActive():
+                #     self.click(120, 555)
+                #     self.collectContract()
+                #     self.clickBack()
                 else:
                     self.clickPlay()
                 continue
@@ -165,6 +165,12 @@ class Bot:
             self.click(926, 770)
             time.sleep(3)
             self.keyBack()
+        closeIcon = self.getXYByColor((116,208,28), True, 0, (905, 747), (953, 822))  # Contract
+        if closeIcon:
+            self.log('Skip league')
+            self.click(closeIcon[0], closeIcon[1])
+            time.sleep(3)
+            self.keyBack()
         if self.pixelSearch(566, 560, (238, 72, 35)): # Повышение level1
             self.log('Повышение level 1')
             self.click(566, 560)
@@ -180,7 +186,8 @@ class Bot:
         if self.pixelSearch(530, 290, (17, 114, 201)): # Autokick
             self.log('Autockic detected')
             self.keyBack()
-        if self.pixelSearch(873, 791, (155, 23, 224)): # Contract
+        closeIcon = self.getXYByColor((22, 51, 141), True, 0, (1475, 6), (1586, 96))# Contract
+        if closeIcon:
             self.log('Contracts detected')
             self.keyBack()
         if self.pixelSearch(446, 166, (82, 58, 215)): # Братья по оружию
@@ -305,6 +312,7 @@ class Bot:
             else:
                 hasMission = False
         self.log('END Mission Bot')
+        self.keyBack()
 
     def isTicketsOver(self):
         self.getScreen()
@@ -317,10 +325,13 @@ class Bot:
             return False
 
     def isCollectScreen(self):
+        сount = 0
         if self.pixelSearch(680, 780, (106, 202, 18)):  # 1340, 30, 1350, 40,
-            return True
-        else:
-            return False
+            сount += 1
+        cord = self.getXYByColor((2, 108, 143), True, 0, (636, 356), (858, 390))
+        if cord:
+            сount += 1
+        return сount > 0
 
     def isTableRezultScreen(self):
         x1 = 380
