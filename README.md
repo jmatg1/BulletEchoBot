@@ -1,4 +1,6 @@
 # BulletEchoBot
+## Start
+py code.py
 
 Set Russian Language in the game
 ## Settings Bluestacks 4
